@@ -3,7 +3,7 @@ function BudgetComponent({title, budget, image}) {
         <div className="budget-component">
             <div className="budget-component-details">
                 <h2>{title}</h2>
-                <p>₹</p>
+                <p>₹{budget}</p>
             </div>
             <div>
                 <img src={image} alt="" className="budget-component-image" />

@@ -12,7 +12,7 @@ body {
   border-radius: 0px 0px 40px 40px;
   background: #fff;
   box-shadow: 0px 8px 32px 0px rgba(28, 28, 30, 0.1);
-  padding: 6px 1128px 6px 121px;
+  padding: 6px 1128px 6px 70px;
   height: 80px;
 }
 
@@ -24,9 +24,10 @@ body {
 }
 
 .main-container {
-  padding: 0 120px;
+  padding: 0 70px;
   display: flex;
   flex-direction: column;
+  gap: 40px;
 }
 
 .user-heading {
@@ -37,11 +38,14 @@ body {
   font-family: Arimo;
   font-size: 48px;
   font-weight: 700;
-  /* padding: 10px 981px 10px 0; */
+  margin: 0;
+  padding-top: 20px;
 }
 
 .budget-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 26px;
 }
 
@@ -66,17 +70,311 @@ body {
   color: #b5b5b5;
   font-family: Arimo;
   font-size: 24px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 }
 
 .budget-component-details p {
   color: #1c1c1e;
   font-family: Arimo;
   font-size: 48px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   margin: 0;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  /* width: 1279px; */
+}
+
+.search-engine {
+  display: flex;
+  padding: 8px 0px 8px 20px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 40px;
+  border: 2px solid #b5b5b5;
+  background: #f5f5f5;
+  border: none;
+}
+
+.search-engine img {
+  width: 30px;
+  height: 30px;
+}
+
+.search-engine input {
+  color: #b5b5b5;
+  font-family: Arimo;
+  font-size: 16px;
+  font-weight: 400;
+  background: #f5f5f5;
+  outline: none;
+  border: none;
+  width: 81%;
+}
+
+.expense-button {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 40px;
+  background: #f5f5f5;
+  color: #1c1c1e;
+  font-family: Arimo;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18.4px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.expense-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.add-button {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 12px;
+  background: #5c6aff;
+  color: #fff;
+  font-family: Arimo;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18.4px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.add-button:hover,
+.expense-button:hover,
+.search-engine:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* .modal {
+  position: fixed;
+  left: 20%;
+  top: 10%;
+  z-index: 1;
+  background-color: white;
+} */
+
+.add-budget-container,
+.add-expense-container,
+.edit-expense-container {
+  background-color: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 25%;
+}
+
+.add-budget-header-container,
+.add-expense-header-container,
+.edit-expense-header-container {
+  border-bottom: 1px solid black;
+  padding: 15px 30px;
+}
+
+.close-button {
+  position: absolute;
+  right: 0;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  top: 0;
+  line-height: 40px;
+  cursor: pointer;
+  font-size: 30px;
+  border-radius: 0 10px 0 0;
+}
+
+.add-budget-heading,
+.add-expense-heading,
+.edit-expense-heading {
+  font-family: Arimo;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.add-budget-form,
+.add-expense-form,
+.edit-expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 30px;
+}
+
+.add-budget-div,
+.add-expense-div,
+.edit-expense-div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-budget-div label,
+.add-expense-div label,
+.edit-expense-div label {
+  font-family: Arimo;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.add-budget-div input,
+.add-expense-div input,
+.edit-expense-div input,
+select {
+  font-family: Arimo;
+  font-size: 20px;
+  padding: 10px;
+  border: 1px solid black;
+  /* width: 80%; */
+  border-radius: 10px;
+}
+
+.submit-button {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  background: #5c6aff;
+  color: #fff;
+  font-family: Arimo;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18.4px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.expense-container {
+  border: 2px solid #b5b5b5;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  position: relative;
+}
+
+th,
+td {
+  border-bottom: 1px solid #b5b5b5;
+}
+
+.table-header {
+  padding: 10px;
+  text-align: center;
+  font-size: 22px;
+  font-family: Arimo;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+  font-family: Arimo;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.table-button {
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 8px;
+  font-family: Arimo;
+  font-size: 16px;
+  background-color: #ecedff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.delete-modal-container {
+  background-color: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  width: initial;
+  padding: 20px;
+}
+
+.delete-modal-img-container img {
+  width: 100px;
+  height: 100px;
+}
+
+.delete-modal-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-modal-content h2 {
+  font-family: Arimo;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.delete-modal-content p {
+  font-family: Arimo;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.delete-modal-button {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
