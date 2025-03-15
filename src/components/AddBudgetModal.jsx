@@ -27,7 +27,7 @@ const AddBudgetModal = ({ budget, handleBudgetChange, closeBudgetModal, addBudge
 
   return (
     <>
-      <div className="opacity" onClick={closeBudgetModal}></div>
+      <div className="overlay" onClick={closeBudgetModal}></div>
       <div className="add-budget-container">
         <span className="close-button" onClick={closeBudgetModal}>
           &times;

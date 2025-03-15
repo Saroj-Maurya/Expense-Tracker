@@ -6,11 +6,12 @@ const ExpenseButton = ({
   setSelectedCategory,
   setFilteredTransactions,
   expenses,
+  selectedCategory,
 }) => {
   const handleCategoryFilter = (category) => {
     const categoryExpenses = [...expenses];
-    console.log(categoryExpenses)
-    console.log(category)
+    console.log(categoryExpenses);
+    console.log(category);
     setSelectedCategory(category);
     if (category === "All Expense") {
       setFilteredTransactions(expenses);
@@ -22,8 +23,8 @@ const ExpenseButton = ({
   };
   return (
     <button
-      className="expense-button"
-      onClick={() => handleCategoryFilter(title)}
+      className={`expense-button ${ selectedCategory === title ? "selected" : "" }`}
+      onClick={() => handleCategoryFilter(title, expenses)}
     >
       <img src={image} alt="" className="button-image" />
       {title}

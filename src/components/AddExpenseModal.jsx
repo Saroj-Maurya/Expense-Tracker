@@ -59,7 +59,7 @@ const AddExpenseModal = ({
 
   return (
     <>
-      <div className="opacity" onClick={closeAddExpenseModal}></div>
+      <div className="overlay" onClick={closeAddExpenseModal}></div>
       <div className="add-expense-container">
         <span className="close-button" onClick={closeAddExpenseModal}>
           &times;

@@ -1,12 +1,14 @@
 
+import { useState } from "react";
 import exclamation from "../assets/exclamation.png";
 
-const DeleteExpenseModal = ({ closeDeleteModal, handleConfirmDelete } ) => {
+const DeleteExpenseModal = ({ closeDeleteModal, handleConfirmDelete,} ) => {
 
 
   return (
     <>
-      <div className="opacity" onClick={closeDeleteModal}></div>
+   
+      {/* <div className="overlay" onClick={closeDeleteModal}></div> */}
       <div className="delete-modal-container">
         <div className="delete-modal-img-container">
           <img src={exclamation} alt="" />

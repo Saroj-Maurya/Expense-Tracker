@@ -8,13 +8,15 @@ import groceriesicons from "../assets/groceriesicons.svg";
 import travelicons from "../assets/travelicons.svg";
 import healthicons from "../assets/healthicons.svg";
 import searchicon from "../assets/search.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddButton from "./common/AddButton";
 import ExpenseButton from "./common/ExpenseButton";
 import addimage from "../assets/addimage.svg";
 import AddBudgetModal from "./AddBudgetModal";
 import AddExpenseModal from "./AddExpenseModal";
 import ExpenseTable from "./ExpenseTable";
+import ExpenseLineChart from "./ExpenseLineChart";
+import ExpensesPieChart from "./ExpensePieChart";
 
 function ExpenseApp() {
   const [budget, setBudget] = useState(0); // State to manage the budget
@@ -22,8 +24,10 @@ function ExpenseApp() {
   const [isBudgetModalOpen, setBudgetModalOpen] = useState(false);
   const [isExpenseModalOpen, setExpenseModalOpen] = useState(false);
   const [filteredTransactions, setFilteredTransactions] = useState(expenses);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
+
+  console.log(searchInput);
 
   // Toggle Budget Modal
   const handleBudgetModalClick = () => {
@@ -61,18 +65,6 @@ function ExpenseApp() {
     console.log("Expense Added Successfully!");
   };
 
-  // Filter expenses based on the selected category
-  // const handleCategoryFilter = (category) => {
-  //   setSelectedCategory(category);
-  //   if (category === "All") {
-  //     setFilteredTransactions(expenses);
-  //   } else {
-  //     setFilteredTransactions(
-  //       expenses.filter((expense) => expense.category === category)
-  //     );
-  //   }
-  // };
-
   const handleEditTransaction = (updatedExpense) => {
     setExpenses((prevExpenses) =>
       prevExpenses.map((expense) =>
@@ -84,7 +76,7 @@ function ExpenseApp() {
         expense.id === updatedExpense.id ? updatedExpense : expense
       )
     );
-    handleCategoryFilter(selectedCategory);
+    // handleCategoryFilter(selectedCategory);
   };
 
   const handleDeleteClick = (expenseId) => {
@@ -94,8 +86,28 @@ function ExpenseApp() {
     setFilteredTransactions((prevFiltered) =>
       prevFiltered.filter((expense) => expense.id !== expenseId)
     );
-    handleCategoryFilter(selectedCategory);
+    // handleCategoryFilter(selectedCategory);
   };
+
+  const handleSearchInput = (searchInput) => {
+    if (!searchInput || !searchInput.trim().length) {
+      setFilteredTransactions(expenses);
+      return;
+    }
+
+    const filteredData = [...filteredTransactions];
+
+    const sortedTransactions = filteredData.filter((transactions) =>
+      transactions.description
+        .toLowerCase()
+        .includes(searchInput.toLowerCase().trim())
+    );
+    setFilteredTransactions(sortedTransactions);
+  };
+
+  useEffect(() => {
+    handleSearchInput(searchInput);
+  }, [expenses, searchInput]);
 
   return (
     <>
@@ -121,48 +133,53 @@ function ExpenseApp() {
         <div className="button-container">
           <div className="search-engine">
             <img src={searchicon} alt="Search" />
-            <input type="search" placeholder="Search" />
+            <input
+              type="search"
+              placeholder="Search"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
           </div>
 
           <ExpenseButton
             title="All Expense"
             image={allexpenses}
-            // onClick={() => handleCategoryFilter("All")}
             setSelectedCategory={setSelectedCategory}
             setFilteredTransactions={setFilteredTransactions}
             expenses={expenses}
+            selectedCategory={selectedCategory}
           />
           <ExpenseButton
             title="Food & Drinks"
             image={foodicons}
-            // onClick={() => handleCategoryFilter("Food & Drinks")}
             setSelectedCategory={setSelectedCategory}
             setFilteredTransactions={setFilteredTransactions}
             expenses={expenses}
+            selectedCategory={selectedCategory}
           />
           <ExpenseButton
             title="Groceries"
             image={groceriesicons}
-            // onClick={() => handleCategoryFilter("Groceries")}
             setSelectedCategory={setSelectedCategory}
             setFilteredTransactions={setFilteredTransactions}
             expenses={expenses}
+            selectedCategory={selectedCategory}
           />
           <ExpenseButton
             title="Travel"
             image={travelicons}
-            // onClick={() => handleCategoryFilter("Travel")}
             setSelectedCategory={setSelectedCategory}
             setFilteredTransactions={setFilteredTransactions}
             expenses={expenses}
+            selectedCategory={selectedCategory}
           />
           <ExpenseButton
             title="Health"
             image={healthicons}
-            // onClick={() => handleCategoryFilter("Health")}
             setSelectedCategory={setSelectedCategory}
             setFilteredTransactions={setFilteredTransactions}
             expenses={expenses}
+            selectedCategory={selectedCategory}
           />
           <AddButton
             buttonname="Add Budget"
@@ -175,12 +192,22 @@ function ExpenseApp() {
             handelModalChange={handleExpenseModalClick}
           />
         </div>
+        <div className="graphs-container">
+          <ExpensesPieChart
+            className="graph-container-content"
+            transactions={filteredTransactions}
+          />
+          <ExpenseLineChart
+            className="graph-container-content"
+            transactions={filteredTransactions}
+          />
+        </div>
         <div>
           <ExpenseTable
             filteredTransactions={filteredTransactions}
             handleEditTransaction={handleEditTransaction}
             handleDeleteClick={handleDeleteClick}
-            setFilteredTransactions= {setFilteredTransactions}
+            setFilteredTransactions={setFilteredTransactions}
           />
         </div>
 

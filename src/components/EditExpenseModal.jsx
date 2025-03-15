@@ -55,7 +55,7 @@ const EditExpenseModal = ({ selectedTransaction, handleEditTransaction, editModa
   
     return (
       <>
-        <div className="opacity" onClick={editModalClose}></div>
+        {/* <div className="overlay" onClick={editModalClose}></div> */}
         <div className="edit-expense-container">
           <span className="close-button" onClick={editModalClose}>
             &times;
@@ -99,7 +99,7 @@ const EditExpenseModal = ({ selectedTransaction, handleEditTransaction, editModa
                 onChange={(e) => setEditedCategory(e.target.value)}
               >
                 <option value="">Choose an category</option>
-                <option value="Food And Drinks">Food And Drinks</option>
+                <option value="Food & Drinks">Food And Drinks</option>
                 <option value="Groceries">Groceries</option>
                 <option value="Travel">Travel</option>
                 <option value="Health">Health</option>
@@ -123,7 +123,7 @@ const EditExpenseModal = ({ selectedTransaction, handleEditTransaction, editModa
                 <span style={{ color: "red" }}>{errors.newExpenseAmount}</span>
               )}
             </div>
-            <button className="submit-button">Edit Expense</button>
+            <button className="submit-button" onClick={handleSubmit}>Edit Expense</button>
           </form>
         </div>
       </>
